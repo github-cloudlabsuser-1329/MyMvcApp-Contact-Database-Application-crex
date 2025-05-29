@@ -1,6 +1,3 @@
-# GitHub Actions workflow for deploying ASP.NET Core app to Azure Web App
-# Save this as .github/workflows/azure-webapp-deploy.yml in your repository
-
 name: Build and deploy ASP.NET Core app to Azure Web App - webappnamegoeshere
 
 on:
@@ -24,20 +21,16 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: dotnet restore ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
-        working-directory: ${{ github.workspace }}
+        run: dotnet restore ./MyMvcApp.csproj
 
       - name: Build
-        run: dotnet build ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --no-restore
-        working-directory: ${{ github.workspace }}
+        run: dotnet build ./MyMvcApp.csproj --no-restore
 
       - name: Test
-        run: dotnet test ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --no-build --verbosity normal
-        working-directory: ${{ github.workspace }}
+        run: dotnet test ./MyMvcApp.csproj --no-build --verbosity normal
 
       - name: dotnet publish
-        run: dotnet publish ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
-        working-directory: ${{ github.workspace }}
+        run: dotnet publish ./MyMvcApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
