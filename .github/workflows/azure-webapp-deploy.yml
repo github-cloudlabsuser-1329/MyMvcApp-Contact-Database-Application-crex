@@ -25,12 +25,15 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore ./MyMvcApp.csproj
+        working-directory: ${{ github.workspace }}
 
       - name: Build with dotnet
         run: dotnet build ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --configuration Release
+        working-directory: ${{ github.workspace }}
 
       - name: dotnet publish
         run: dotnet publish ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        working-directory: ${{ github.workspace }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
