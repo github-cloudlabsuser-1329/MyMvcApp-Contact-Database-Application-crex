@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appServicePlanName": {
+      "type": "string",
+      "defaultValue": "myMvcAppServicePlan",
+      "metadata": {
+        "description": "Name of the App Service Plan."
+      }
+    },
+    "webAppName": {
+      "type": "string",
+      "defaultValue": "myMvcAppWebApp",
+      "metadata": {
+        "description": "Name of the Web App."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "workerSize": {
+      "type": "string",
+      "defaultValue": "0",
+      "metadata": {
+        "description": "The instance size of the worker (0=Small, 1=Medium, 2=Large)."
+      }
+    },
+    "workerSizeId": {
+      "type": "int",
+      "defaultValue": 0,
+      "metadata": {
+        "description": "The worker size id (0=Small, 1=Medium, 2=Large)."
+      }
+    },
+    "serverPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The password for the database server."
+      }
+    },
+    "dbSubnetId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The subnet resource ID for the database."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2022-03-01",
+      "name": "[parameters('appServicePlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "B1",
+        "tier": "Basic"
+      },
+      "properties": {
+        "reserved": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-03-01",
+      "name": "[parameters('webAppName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      }
+    }
+  ],
+  "outputs": {
+    "webAppName": {
+      "type": "string",
+      "value": "[parameters('webAppName')]"
+    },
+    "webAppUrl": {
+      "type": "string",
+      "value": "[concat('https://', parameters('webAppName'), '.azurewebsites.net')]"
+    }
+  }
+}
