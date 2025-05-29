@@ -24,11 +24,15 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: dotnet restore $GITHUB_WORKSPACE/MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
+        run: dotnet restore ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
         working-directory: ${{ github.workspace }}
 
-      - name: Build with dotnet
-        run: dotnet build ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --configuration Release
+      - name: Build
+        run: dotnet build ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --no-restore
+        working-directory: ${{ github.workspace }}
+
+      - name: Test
+        run: dotnet test ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj --no-build --verbosity normal
         working-directory: ${{ github.workspace }}
 
       - name: dotnet publish
