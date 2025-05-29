@@ -24,7 +24,7 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: dotnet restore ./MyMvcApp.csproj
+        run: dotnet restore $GITHUB_WORKSPACE/MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
         working-directory: ${{ github.workspace }}
 
       - name: Build with dotnet
