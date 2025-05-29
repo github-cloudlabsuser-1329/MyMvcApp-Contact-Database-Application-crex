@@ -1,0 +1,7 @@
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\MyMvcApp.exe
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\appsettings.json
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\MyMvcApp.dll
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\MyMvcApp.deps.json
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\MyMvcApp.runtimeconfig.json
+C:\Users\azureuser\GitHub Copilot\MyMvcApp-Contact-Database-Application-crex\bin\Release\net8.0\publish\MyMvcApp.pdb
