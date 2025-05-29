@@ -22,16 +22,16 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
+      run: dotnet restore MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
 
     - name: Build
-      run: dotnet build --no-restore ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
+      run: dotnet build --no-restore MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./MyMvcApp.Tests/MyMvcApp.Tests.csproj
+      run: dotnet test --no-build --verbosity normal MyMvcApp.Tests/MyMvcApp.Tests.csproj
 
     - name: Publish
-      run: dotnet publish -c Release -o ./publish_output ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
+      run: dotnet publish -c Release -o ./publish_output MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
