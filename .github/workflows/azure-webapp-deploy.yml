@@ -33,6 +33,15 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o ./publish_output ./MyMvcApp-Contact-Database-Application-crex/MyMvcApp.csproj
 
+    - name: Deploy ARM Template
+      uses: azure/arm-deploy@v1
+      with:
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        resource-group-name: ${{ secrets.AZURE_RESOURCE_GROUP }}
+        template: ./deploy.json
+        parameters: ./deploy.parameters.json
+        deployment-name: github-actions-deployment
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
